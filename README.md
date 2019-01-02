@@ -1,4 +1,4 @@
-LINE account link sample code: A simple code for LINE account link
+LINE account link sample code: A sample code for LINE account link
 ==============
 
  [![GoDoc](https://godoc.org/github.com/kkdai/line-account-link.svg?status.svg)](https://godoc.org/github.com/kkdai/line-account-link)  [![Build Status](https://travis-ci.org/kkdai/line-account-link.svg?branch=master)](https://travis-ci.org/kkdai/line-account-link)
