@@ -50,7 +50,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 				sNonce := b64.StdEncoding.EncodeToString([]byte(token + name + pw))
 				targetURL := fmt.Sprintf("https://access.line.me/dialog/bot/accountLink?linkToken=%s&nonce=%s", token, sNonce)
 				log.Println("generate nonce, targetURL=", targetURL)
-				http.Redirect(w, r, targetURL, 200)
+				tmpl := template.Must(template.ParseFiles("link.tmpl"))
+				if err := tmpl.Execute(w, targetURL); err != nil {
+					log.Println("Template err:", err)
+				}
 				return
 			}
 		}
