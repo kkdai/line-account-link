@@ -54,13 +54,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
 					if _, err = bot.ReplyMessage(
 						event.ReplyToken,
-						linebot.NewTemplateMessage("Account Link", linebot.NewButtonsTemplate(
-							"",
-							"account link",
-							"account link",
-							linebot.NewURIAction("Account Link", serverURL+"link?linkToken="+res.LinkToken)),
-						),
-					).Do(); err != nil {
+						linebot.NewTextMessage("Account Link: link= "+serverURL+"link?linkToken="+res.LinkToken)).Do(); err != nil {
 						log.Println("err:", err)
 						return
 					}
@@ -69,17 +63,10 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				case strings.EqualFold(message.Text, "list"):
 					if _, err = bot.ReplyMessage(
 						event.ReplyToken,
-						linebot.NewTemplateMessage("List all user", linebot.NewButtonsTemplate(
-							"",
-							"List all cusotmers in provider website",
-							"list all cusotmers",
-							linebot.NewURIAction("List all cusotmers", serverURL)),
-						),
-					).Do(); err != nil {
+						linebot.NewTextMessage("List all user: link= "+serverURL)).Do(); err != nil {
 						log.Println("err:", err)
 						return
 					}
-
 					return
 				}
 
@@ -88,7 +75,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					if usr.LinkUserID == event.Source.UserID {
 						if _, err = bot.ReplyMessage(
 							event.ReplyToken,
-							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. \nWe know about:"+usr.Desc+" \n Here is all features ...")).Do(); err != nil {
+							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. \nWe know about you: "+usr.Desc+" \nHere is all features ...")).Do(); err != nil {
 							log.Println("err:", err)
 							return
 						}
