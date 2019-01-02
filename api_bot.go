@@ -8,6 +8,19 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
+//LinkCustomer : A chatbot DB to store account link information.
+type LinkCustomer struct {
+	//Data from CustData from provider.
+	Name   string
+	Age    int
+	Desc   string
+	Nounce string
+	//For chatbot linked data.
+	LinkUserID string
+}
+
+var linkedCustomers []LinkCustomer
+
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
 
@@ -70,6 +83,19 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 
+				//Check user if it is linked.
+				for _, usr := range linkedCustomers {
+					if usr.LinkUserID == event.Source.UserID {
+						if _, err = bot.ReplyMessage(
+							event.ReplyToken,
+							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. Here is all features ...")).Do(); err != nil {
+							log.Println("err:", err)
+							return
+						}
+						return
+					}
+				}
+
 				if _, err = bot.ReplyMessage(
 					event.ReplyToken,
 					linebot.NewTextMessage("Currently your account is not linked to provider. \nThis is a starter for account link, check following actions.").
@@ -89,6 +115,37 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		} else if event.Type == linebot.EventTypeAccountLink {
 			// account link success.s
 			log.Println("EventTypeAccountLink: source=", event.Source, " result=", event.AccountLink.Result)
+			for _, user := range linkedCustomers {
+				if event.Source.UserID == user.LinkUserID {
+					log.Println("User:", user, " already linked account.")
+					return
+				}
+			}
+
+			//search from all user using nounce.
+			for _, usr := range customers {
+				if usr.Nounce == event.AccountLink.Nonce {
+					//Append to linked DB.
+					linkedUser := LinkCustomer{
+						Name:       usr.Name,
+						Age:        usr.Age,
+						Desc:       usr.Desc,
+						LinkUserID: event.Source.UserID,
+					}
+
+					linkedCustomers = append(linkedCustomers, linkedUser)
+
+					//Send message back to user
+					if _, err = bot.ReplyMessage(
+						event.ReplyToken,
+						linebot.NewTextMessage("Hi "+usr.Name+" your account already linked to this chatbot.")).Do(); err != nil {
+						log.Println("err:", err)
+						return
+					}
+					return
+				}
+			}
+			log.Println("Error: no such user:", event.Source.UserID, " nounce=", event.AccountLink.Nonce, " for account link.")
 		}
 	}
 }
