@@ -88,7 +88,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					if usr.LinkUserID == event.Source.UserID {
 						if _, err = bot.ReplyMessage(
 							event.ReplyToken,
-							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. Here is all features ...")).Do(); err != nil {
+							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. \nWe know about:"+usr.Desc+" \n Here is all features ...")).Do(); err != nil {
 							log.Println("err:", err)
 							return
 						}
