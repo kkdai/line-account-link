@@ -86,6 +86,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 			}
+		} else if event.Type == linebot.EventTypeAccountLink {
+			// account link success.s
+			log.Println("EventTypeAccountLink: source=", event.Source, " result=", event.AccountLink.Result)
 		}
 	}
 }
