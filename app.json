@@ -1,0 +1,28 @@
+{
+  "name": "line-account-link",
+  "description": "Line account line sample code",
+  "repository": "https://github.com/kkdai/line-account-link",
+  "keywords": ["Line", "go", "static"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/kr/heroku-buildpack-go.git"
+    },
+    {
+      "url": "heroku/go"
+    }
+  ],
+  "env": {
+    "LINECORP_PLATFORM_CHANNEL_CHANNELSECRET": {
+      "description": "Channel secret",
+      "required": true
+    },
+    "LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN": {
+      "description": "Channel token",
+      "required": true
+    },
+    "LINECORP_PLATFORM_CHANNEL_SERVERURL": {
+      "description": "Server URL",
+      "required": true
+    }
+  }
+}

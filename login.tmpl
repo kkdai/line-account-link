@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Log-in</title>
+</head>
+
+<body>
+
+  <center>
+    <h1>Log-in</h1><br>
+  <form action="login" method="post"><br>
+    Login ID:<input type="text" name="user" placeholder="Username"><br>
+    Password:<input type="password" name="pass" placeholder="Password"><br>
+  	<input type="hidden" value="{{.}}" name="token" />
+	<input type="submit" name="login" class="login login-submit" value="login"><br>
+  </form>
+</center>
+
+</body>
+
+</html>
