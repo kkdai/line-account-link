@@ -46,8 +46,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 		if usr.ID == name {
 			if pass == usr.PW {
 				//generate nonce
-				log.Println("generate nonce")
-				http.Redirect(w, r, fmt.Sprintf("https://access.line.me/dialog/bot/accountLink?linkToken=%s&nonce=1234", token), 200)
+				targetURL := fmt.Sprintf("https://access.line.me/dialog/bot/accountLink?linkToken=%s&nonce=1234", token)
+				log.Println("generate nonce, targetURL=", targetURL)
+				http.Redirect(w, r, targetURL, 200)
 				return
 			}
 		}
