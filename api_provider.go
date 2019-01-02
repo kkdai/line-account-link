@@ -1,6 +1,7 @@
 package main
 
 import (
+	b64 "encoding/base64"
 	"fmt"
 	"html/template"
 	"log"
@@ -39,14 +40,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	name := r.FormValue("user")
-	pass := r.FormValue("pass")
+	pw := r.FormValue("pass")
 	token := r.FormValue("token")
 	for _, usr := range customers {
-		log.Println("usr:=", usr, " name=", name, " pass=", pass)
+		log.Println("usr:=", usr, " name=", name, " pass=", pw)
 		if usr.ID == name {
-			if pass == usr.PW {
-				//generate nonce
-				targetURL := fmt.Sprintf("https://access.line.me/dialog/bot/accountLink?linkToken=%s&nonce=212", token)
+			if pw == usr.PW {
+				//generate nonce (currently nounce combine by token + name + pw)
+				sNonce := b64.StdEncoding.EncodeToString([]byte(token + name + pw))
+				targetURL := fmt.Sprintf("https://access.line.me/dialog/bot/accountLink?linkToken=%s&nonce=%s", token, sNonce)
 				log.Println("generate nonce, targetURL=", targetURL)
 				http.Redirect(w, r, targetURL, 200)
 				return
