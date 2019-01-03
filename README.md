@@ -35,9 +35,8 @@ Installation and Usage
         - LINECORP_PLATFORM_CHANNEL_CHANNELSECRET
         - LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN
         - LINECORP_PLATFORM_CHANNEL_SERVERURL
-- 
-
-
+- Update the webhook url with https://xxx.herokuapp.com/callback in LINE developer
+- Done
 
 Deploy on Heroku
 =============
