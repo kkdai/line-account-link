@@ -32,7 +32,7 @@ func init() {
 //WEB: List all user in memory
 func listCust(w http.ResponseWriter, r *http.Request) {
 	for i, usr := range customers {
-		fmt.Fprintf(w, "%d \t ID: %s \t Desc:%s \n", i, usr.ID, usr.Desc)
+		fmt.Fprintf(w, "%d \tID: %s \tPW: %s \tDesc:%s \n", i, usr.ID, usr.PW, usr.Desc)
 	}
 }
 

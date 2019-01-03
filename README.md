@@ -9,6 +9,14 @@ LINE account link sample code: A sample code for LINE account link
 Installation and Usage
 =============
 
+- Create your LINE Developer account and create a developer trial account. 
+- Deploy this project to heroku
+    - You need to fill following configuration during you create project.
+        - LINECORP_PLATFORM_CHANNEL_CHANNELSECRET
+        - LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN
+        - LINECORP_PLATFORM_CHANNEL_SERVERURL
+- 
+
 
 
 Deploy on Heroku
