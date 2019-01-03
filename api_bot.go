@@ -45,6 +45,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				switch {
 				case strings.EqualFold(message.Text, "link"):
 					//token link
+					//1. The bot server calls the API that issues a link token from the LINE user ID.
+					//2. The LINE Platform returns the link token to the bot server.
 					res, err := bot.IssueLinkToken(userID).Do()
 					if err != nil {
 						log.Println("Issue link token error, err=", err)
@@ -52,6 +54,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
 					log.Println("Get user token:", res.LinkToken)
 
+					//3. The bot server calls the Messaging API to send a linking URL to the user.
+					//4. The LINE Platform sends a linking URL to the user.
 					if _, err = bot.ReplyMessage(
 						event.ReplyToken,
 						linebot.NewTextMessage("Account Link: link= "+serverURL+"link?linkToken="+res.LinkToken)).Do(); err != nil {
@@ -100,7 +104,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		} else if event.Type == linebot.EventTypeAccountLink {
-			// account link success.s
+			//11. The LINE Platform sends an event (which includes the LINE user ID and nonce) via webhook to the bot server.
+			// account link success
 			log.Println("EventTypeAccountLink: source=", event.Source, " result=", event.AccountLink.Result)
 			for _, user := range linkedCustomers {
 				if event.Source.UserID == user.LinkUserID {
@@ -111,6 +116,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
 			//search from all user using nounce.
 			for _, usr := range customers {
+				//12. The bot server uses the nonce to acquire the user ID of the provider's service.
 				if usr.Nounce == event.AccountLink.Nonce {
 					//Append to linked DB.
 					linkedUser := LinkCustomer{

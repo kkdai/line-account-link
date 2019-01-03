@@ -38,6 +38,7 @@ func listCust(w http.ResponseWriter, r *http.Request) {
 
 //WEB: For login (just for demo)
 func login(w http.ResponseWriter, r *http.Request) {
+	//7. The user enters his/her credentials.
 	if err := r.ParseForm(); err != nil {
 		log.Printf("ParseForm() err: %v\n", err)
 		return
@@ -49,12 +50,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 		log.Println("usr:=", usr, " name=", name, " pass=", pw)
 		if usr.ID == name {
 			if pw == usr.PW {
-				//generate nonce (currently nounce combine by token + name + pw)
-				sNonce := b64.StdEncoding.EncodeToString([]byte(token + name + pw))
+				//8. The web server acquires the user ID from the provider's service and uses that to generate a nonce.
+				sNonce := generateNounce(token, name, pw)
 
 				//update nounce to provider DB to store it.
 				customers[i].Nounce = sNonce
 
+				//9. The web server redirects the user to the account-linking endpoint.
+				//10. The user accesses the account-linking endpoint.
+				//Print link to user to click it.
 				targetURL := fmt.Sprintf("https://access.line.me/dialog/bot/accountLink?linkToken=%s&nonce=%s", token, sNonce)
 				log.Println("generate nonce, targetURL=", targetURL)
 				tmpl := template.Must(template.ParseFiles("link.tmpl"))
@@ -70,6 +74,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 //WEB: For account link
 func link(w http.ResponseWriter, r *http.Request) {
+	//5. The user accesses the linking URL.
 	TOKEN := r.FormValue("linkToken")
 	if TOKEN == "" {
 		log.Println("No token.")
@@ -78,7 +83,13 @@ func link(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("token = ", TOKEN)
 	tmpl := template.Must(template.ParseFiles("login.tmpl"))
+	//6. The web server displays the login screen.
 	if err := tmpl.Execute(w, TOKEN); err != nil {
 		log.Println("Template err:", err)
 	}
+}
+
+//generate nonce (currently nounce combine by token + name + pw)
+func generateNounce(token, name, pw string) string {
+	return b64.StdEncoding.EncodeToString([]byte(token + name + pw))
 }
