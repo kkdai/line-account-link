@@ -1,9 +1,7 @@
 LINE account link sample code: A sample code for LINE account link
 ==============
 
- [![GoDoc](https://godoc.org/github.com/kkdai/line-account-link.svg?status.svg)](https://godoc.org/github.com/kkdai/line-account-link)  [![Build Status](https://travis-ci.org/kkdai/line-account-link.svg?branch=master)](https://travis-ci.org/kkdai/line-account-link)
-
-[![goreportcard.com](https://goreportcard.com/badge/github.com/kkdai/line-account-link)](https://goreportcard.com/report/github.com/kkdai/line-account-link)
+ [![GoDoc](https://godoc.org/github.com/kkdai/line-account-link.svg?status.svg)](https://godoc.org/github.com/kkdai/line-account-link)[![Build Status](https://travis-ci.org/kkdai/line-account-link.svg?branch=master)](https://travis-ci.org/kkdai/line-account-link)[![goreportcard.com](https://goreportcard.com/badge/github.com/kkdai/line-account-link)](https://goreportcard.com/report/github.com/kkdai/line-account-link)
 
 This is sample code to demostration LINE chatbot account link, refer to document https://developers.line.biz/en/docs/messaging-api/linking-accounts/
 
@@ -26,10 +24,13 @@ You could see each step mark in comment (from step 1 to 12)
 12. The bot server uses the nonce to acquire the user ID of the provider's service.
 
 
-Installation and Usage
+Installation
 =============
 
 - Create your LINE Developer account and create a developer trial account. 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 - Deploy this project to heroku
     - You need to fill following configuration during you create project.
         - LINECORP_PLATFORM_CHANNEL_CHANNELSECRET
@@ -38,8 +39,56 @@ Installation and Usage
 - Update the webhook url with https://xxx.herokuapp.com/callback in LINE developer
 - Done
 
+If you don't want to deploy your own LINE account link chatbot, you can click follow to add friend
+
+[![](https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png)](https://line.me/R/ti/p/%40yzy8635g)
+
+
+How to Use it
+=============
+
+
+- Input any test will show quick reply "account link" and  "list user"
+
+![](img/al1.png)
+
+
+- Input "list user"
+
+![](img/al2.png)
+
+
+- Click link of "list user" will display all user from provider website.
+
+![](img/al3.png)
+
+
+# Test account link
+
+- Input "link"
+![](img/al4.png)
+
+- Input ID, PW. (refer from "list")
+    - e.g.  "11", "pw11"
+
+![](img/al6.png)
+
+- Click "Click link to completed account link" to link your account to chatbot.
+
+![](img/al7.png)
+
+- Close browser
+
+![](img/al8.png)
+
+- Chatbot already link to your account, input any text will show your information.
+
+![](img/al5.png)
+
+
 Deploy on Heroku
 =============
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
