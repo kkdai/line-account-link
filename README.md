@@ -50,40 +50,40 @@ How to Use it
 
 - Input any test will show quick reply "account link" and  "list user"
 
-![](img/al1.png)
+![](img/al1.PNG)
 
 
 - Input "list user"
 
-![](img/al2.png)
+![](img/al2.PNG)
 
 
 - Click link of "list user" will display all user from provider website.
 
-![](img/al3.png)
+![](img/al3.PNG)
 
 
 # Test account link
 
 - Input "link"
-![](img/al4.png)
+![](img/al4.PNG)
 
 - Input ID, PW. (refer from "list")
     - e.g.  "11", "pw11"
 
-![](img/al6.png)
+![](img/al6.PNG)
 
 - Click "Click link to completed account link" to link your account to chatbot.
 
-![](img/al7.png)
+![](img/al7.PNG)
 
 - Close browser
 
-![](img/al8.png)
+![](img/al8.PNG)
 
 - Chatbot already link to your account, input any text will show your information.
 
-![](img/al5.png)
+![](img/al5.PNG)
 
 
 Deploy on Heroku
