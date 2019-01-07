@@ -47,7 +47,6 @@ func login(w http.ResponseWriter, r *http.Request) {
 	pw := r.FormValue("pass")
 	token := r.FormValue("token")
 	for i, usr := range customers {
-		log.Println("usr:=", usr, " name=", name, " pass=", pw)
 		if usr.ID == name {
 			if pw == usr.PW {
 				//8. The web server acquires the user ID from the provider's service and uses that to generate a nonce.
