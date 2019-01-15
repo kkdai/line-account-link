@@ -27,8 +27,10 @@ var serverURL string
 func main() {
 	var err error
 	serverURL = os.Getenv("LINECORP_PLATFORM_CHANNEL_SERVERURL")
-	bot, err = linebot.New(os.Getenv("LINECORP_PLATFORM_CHANNEL_CHANNELSECRET"), os.Getenv("LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN"))
-	log.Println("Bot:", bot, " err:", err)
+	if bot, err = linebot.New(os.Getenv("LINECORP_PLATFORM_CHANNEL_CHANNELSECRET"), os.Getenv("LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN")); err != nil {
+		log.Println("Bot:", bot, " err:", err)
+		return
+	}
 
 	//BOT APIs
 	http.HandleFunc("/callback", callbackHandler)
