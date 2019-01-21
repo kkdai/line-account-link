@@ -23,14 +23,15 @@ var customers []CustData
 func init() {
 	//Init customer data in memory
 	customers = append(customers, []CustData{
-		CustData{ID: "11", PW: "pw11", Name: "Paul", Age: 43, Desc: "He is from A corp. likes to read."},
-		CustData{ID: "22", PW: "pw22", Name: "John", Age: 25, Desc: "He is from B corp. likes to ski"},
-		CustData{ID: "33", PW: "pw33", Name: "Mary", Age: 13, Desc: "She is a student, like to go to movie"},
+		CustData{ID: "11", PW: "pw11", Name: "Tom", Age: 43, Desc: "He is from A corp. likes to read comic books."},
+		CustData{ID: "22", PW: "pw22", Name: "John", Age: 25, Desc: "He is from B corp. likes to read news paper"},
+		CustData{ID: "33", PW: "pw33", Name: "Mary", Age: 13, Desc: "She is a student, like to read science books"},
 	}...)
 }
 
 //WEB: List all user in memory
 func listCust(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Bookstore customer list as follow:\n")
 	for i, usr := range customers {
 		fmt.Fprintf(w, "%d \tID: %s \tPW: %s \tDesc:%s \n", i, usr.ID, usr.PW, usr.Desc)
 	}

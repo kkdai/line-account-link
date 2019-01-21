@@ -79,7 +79,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					if usr.LinkUserID == event.Source.UserID {
 						if _, err = bot.ReplyMessage(
 							event.ReplyToken,
-							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. \nWe know about you: "+usr.Desc+" \nHere is all features ...")).Do(); err != nil {
+							linebot.NewTextMessage("Hi "+usr.Name+"!, Nice to see you. \nWe know you: "+usr.Desc+" \nHere is all features ...")).Do(); err != nil {
 							log.Println("err:", err)
 							return
 						}
@@ -89,7 +89,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
 				if _, err = bot.ReplyMessage(
 					event.ReplyToken,
-					linebot.NewTextMessage("Currently your account is not linked to provider. \nThis is a starter for account link, check following actions.").
+					linebot.NewTextMessage("Welcome to booksstore, currently your account is not linked to provider. \nThis is a starter for account link, check following actions.").
 						WithQuickReplies(linebot.NewQuickReplyItems(
 							linebot.NewQuickReplyButton(
 								"",
