@@ -87,7 +87,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 
-				log.Println("source:>>>", event.Source)
+				log.Println("source:>>>", event.Source, " group:>>", event.Source.GroupID, " room:>>", event.Source.RoomID)
 
 				if _, err = bot.ReplyMessage(
 					event.ReplyToken,
