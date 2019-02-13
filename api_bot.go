@@ -87,6 +87,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 
+				log.Println("source:>>>", event.Source)
+
 				if _, err = bot.ReplyMessage(
 					event.ReplyToken,
 					linebot.NewTextMessage("Welcome to booksstore, currently your account is not linked to provider. \nThis is a starter for account link, check following actions.").

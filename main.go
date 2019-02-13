@@ -32,6 +32,8 @@ func main() {
 		return
 	}
 
+	log.Println("Channel Token:", os.Getenv("LINECORP_PLATFORM_CHANNEL_CHANNELTOKEN"))
+
 	//BOT APIs
 	http.HandleFunc("/callback", callbackHandler)
 
