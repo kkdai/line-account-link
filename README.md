@@ -27,9 +27,8 @@ You could see each step mark in comment (from step 1 to 12)
 Installation
 =============
 
-- Create your LINE Developer account and create a developer trial account. 
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+- Create your LINE Developer account and create a developer trial account.  
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 - Deploy this project to heroku
     - You need to fill following configuration during you create project.
@@ -42,7 +41,6 @@ Installation
 If you don't want to deploy your own LINE account link chatbot, you can click follow to add friend
 
 [![](https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png)](https://line.me/R/ti/p/%40yzy8635g)
-
 
 How to Use it
 =============
@@ -66,29 +64,23 @@ How to Use it
 # Test account link
 
 - Input "link"
-![](img/al4.PNG)
 
-- Input ID, PW. (refer from "list")
-    - e.g.  "11", "pw11"
+  ![](img/al4.PNG)
 
-![](img/al6.PNG)
+- Input ID, PW. (refer from "list") (e.g.  "11", "pw11")
 
-- Click "Click link to completed account link" to link your account to chatbot.
+  ![](img/al6.PNG)
 
-![](img/al7.PNG)
+- Click "Click link to completed account link" to link your account to chatbot.
+
+  ![](img/al7.PNG)
 
 - Close browser
 
-![](img/al8.PNG)
+  ![](img/al8.PNG)
 
 - Chatbot already link to your account, input any text will show your information.
 
-![](img/al5.PNG)
-
-
-Deploy on Heroku
-=============
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+  ![](img/al5.PNG)
 
 
