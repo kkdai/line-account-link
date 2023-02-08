@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-//CustData : Customers data for provider website.
+// CustData : Customers data for provider website.
 type CustData struct {
-	ID     string
-	PW     string
-	Name   string
-	Age    int
-	Desc   string
-	Nounce string
+	ID    string
+	PW    string
+	Name  string
+	Age   int
+	Desc  string
+	Nonce string
 }
 
 var customers []CustData
@@ -29,7 +29,7 @@ func init() {
 	}...)
 }
 
-//WEB: List all user in memory
+// WEB: List all user in memory
 func listCust(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Bookstore customer list as follow:\n")
 	for i, usr := range customers {
@@ -37,7 +37,7 @@ func listCust(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//WEB: For login (just for demo)
+// WEB: For login (just for demo)
 func login(w http.ResponseWriter, r *http.Request) {
 	//7. The user enters his/her credentials.
 	if err := r.ParseForm(); err != nil {
@@ -51,10 +51,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 		if usr.ID == name {
 			if pw == usr.PW {
 				//8. The web server acquires the user ID from the provider's service and uses that to generate a nonce.
-				sNonce := generateNounce(token, name, pw)
+				sNonce := generateNonce(token, name, pw)
 
-				//update nounce to provider DB to store it.
-				customers[i].Nounce = sNonce
+				//update nonce to provider DB to store it.
+				customers[i].Nonce = sNonce
 
 				//9. The web server redirects the user to the account-linking endpoint.
 				//10. The user accesses the account-linking endpoint.
@@ -72,7 +72,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Your input name or password error.")
 }
 
-//WEB: For account link
+// WEB: For account link
 func link(w http.ResponseWriter, r *http.Request) {
 	//5. The user accesses the linking URL.
 	TOKEN := r.FormValue("linkToken")
@@ -89,7 +89,7 @@ func link(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//generate nonce (currently nounce combine by token + name + pw)
-func generateNounce(token, name, pw string) string {
+// generate nonce (currently nonce combine by token + name + pw)
+func generateNonce(token, name, pw string) string {
 	return b64.StdEncoding.EncodeToString([]byte(token + name + pw))
 }

@@ -8,13 +8,13 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
-//LinkCustomer : A chatbot DB to store account link information.
+// LinkCustomer : A chatbot DB to store account link information.
 type LinkCustomer struct {
 	//Data from CustData from provider.
-	Name   string
-	Age    int
-	Desc   string
-	Nounce string
+	Name  string
+	Age   int
+	Desc  string
+	Nonce string
 	//For chatbot linked data.
 	LinkUserID string
 }
@@ -116,10 +116,10 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 
-			//search from all user using nounce.
+			//search from all user using nonce.
 			for _, usr := range customers {
 				//12. The bot server uses the nonce to acquire the user ID of the provider's service.
-				if usr.Nounce == event.AccountLink.Nonce {
+				if usr.Nonce == event.AccountLink.Nonce {
 					//Append to linked DB.
 					linkedUser := LinkCustomer{
 						Name:       usr.Name,
@@ -140,7 +140,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 			}
-			log.Println("Error: no such user:", event.Source.UserID, " nounce=", event.AccountLink.Nonce, " for account link.")
+			log.Println("Error: no such user:", event.Source.UserID, " nonce=", event.AccountLink.Nonce, " for account link.")
 		}
 	}
 }
