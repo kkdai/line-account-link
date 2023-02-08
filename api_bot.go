@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/line/line-bot-sdk-go/linebot"
+	"github.com/line/line-bot-sdk-go/v7/linebot"
 )
 
 // LinkCustomer : A chatbot DB to store account link information.
