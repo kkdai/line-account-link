@@ -1,23 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-tw" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Log-in</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-title" content="登入｜Foodler">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>登入｜Foodler</title>
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/root.css">
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/login.css">
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/header.css">
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/components.css">
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/indicator.css">
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/footer.css">
+    <link rel="stylesheet" href="https://foodler.iistw.com/dashboard/assets/css/backToTop.css">
+    <meta name="description" content="登入｜Foodler">
+    <meta property="og:description" content="登入｜Foodler">
+    <meta itemprop="name" content="登入｜Foodler">
 </head>
 
 <body>
-
-  <center>
-    <h1>Log-in</h1><br>
-  <form action="login" method="post"><br>
-    Login ID:<input type="text" name="user" placeholder="Username"><br>
-    Password:<input type="password" name="pass" placeholder="Password"><br>
-  	<input type="hidden" value="{{.}}" name="token" />
-	<input type="submit" name="login" class="login login-submit" value="login"><br>
-  </form>
-</center>
-
+    <div class="container">
+        <!-- Indicator -->
+        <div class="indicator">
+            <div class="indicatorBar" id="indicatorBar"></div>
+        </div>
+        <div class="loginContainer">
+            <div class="loginSVG">
+                <img src="https://foodler.iistw.com/dashboard/images/login-dark.svg">
+            </div>
+            <div class="loginFormContainer">
+                <header>
+                    <h1>登入</h1>
+                </header>
+                <div class="loginForm">
+                    <form action="login" method="post" id="loginForm" name="loginForm">
+                        <input type="hidden" value="{{.}}" name="token" />
+                        <div class="inputField" data-group="username">
+                            <input type="text" name="user" id="username" value="" placeholder="Username">
+                            <i class="far fa-user fa-fw"></i>
+                        </div>
+                        <div class="inputField" data-group="password">
+                            <input type="password" name="pass" id="password" value="" placeholder="Password">
+                            <i class="far fa-lock-alt fa-fw"></i>
+                        </div>
+                        <div class="btnField">
+                            <input type="submit" name="login" class="primary flex" value="登入">
+                        </div>
+                    </form>
+                </div>
+                <footer>
+                    <p>Foodler｜Copyright © 2022 <a target="_blank" href="https://iistw.com/">Infinity資訊</a>. All rights
+                        reserved.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- Back to top -->
+    <div class="backToTop"><i class="fas fa-angle-up fa-fw"></i></div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Indicator -->
+    <script src="https://foodler.iistw.com/dashboard/assets/js/indicator.js"></script>
+    <!-- Back to top -->
+    <script src="https://foodler.iistw.com/dashboard/assets/js/backToTop.js"></script>
 </body>
 
 </html>
