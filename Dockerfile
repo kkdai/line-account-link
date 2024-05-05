@@ -21,6 +21,6 @@ FROM scratch
 COPY --from=builder /app/server /server
 COPY link.tmpl ./link.tmpl
 COPY login.tmpl ./login.tmpl
-COPY static/ ./static/
+
 # Run the web service on container startup.
 ENTRYPOINT ["/server"]
